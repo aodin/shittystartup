@@ -6,21 +6,23 @@ import (
 )
 
 type Server struct {
-	tmpl *template.Template
+	tmpl   *template.Template
+	config Config
 }
 
-type Attrs struct {
-	StaticURL string
-}
-
+// Our main HTTP response handler that will attached to the root URL.
 func (s *Server) WriteResponse(w http.ResponseWriter, r *http.Request) {
-	attrs := Attrs{StaticURL: "/static/"}
-	s.tmpl.Execute(w, attrs) // Execute returns an error that we're ignoring
+	// Execute returns an error that we're currently ignoring
+	s.tmpl.Execute(w, s.config)
 }
 
+// The server constructor function
 func NewServer() (*Server, error) {
+	// Create the new config
+	config := ParseConfig()
+
 	// Create a pointer to a new, zero-initialized Server struct
-	server := &Server{}
+	server := &Server{config: config}
 
 	// Since "tmpl" is lowercase it can only be accessed within the struct
 	tmpl, err := template.ParseFiles("./shittystartup/templates/landing.html")
