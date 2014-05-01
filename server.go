@@ -1,6 +1,7 @@
 package shittystartup
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 )
@@ -14,6 +15,13 @@ type Server struct {
 func (s *Server) WriteResponse(w http.ResponseWriter, r *http.Request) {
 	// Execute returns an error that we're currently ignoring
 	s.tmpl.Execute(w, s.config)
+}
+
+// Wrap the http package's ListenAndServe
+func (s *Server) ListenAndServe() error {
+	// Build the server address using the config's Port number
+	address := fmt.Sprintf(":%d", s.config.Port)
+	return http.ListenAndServe(address, nil)
 }
 
 // The server constructor function
@@ -38,6 +46,18 @@ func NewServer() (*Server, error) {
 	// We don't use assignment (:=) because the variable "server.tmpl"
 	// already exists. It was zero initialized in the server struct.
 	server.tmpl = tmpl
+
+	// Build the routes in the server constructor
+	http.HandleFunc("/", server.WriteResponse)
+
+	// Serve static files using the config's StaticURL
+	http.Handle(
+		config.StaticURL,
+		http.StripPrefix(
+			config.StaticURL,
+			http.FileServer(http.Dir("./shittystartup/static/")),
+		),
+	)
 
 	// If there is no error to return, return nil
 	return server, nil

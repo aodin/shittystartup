@@ -18,7 +18,7 @@ func ParseConfig() Config {
 		&config.StaticURL,
 		"staticurl",
 		"/static/",
-		"static file directory",
+		"static file URL",
 	)
 	flag.IntVar(&config.Port, "port", 9001, "port number")
 
