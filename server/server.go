@@ -1,4 +1,4 @@
-package shittystartup
+package server
 
 import (
 	"fmt"
@@ -26,7 +26,7 @@ func (s *Server) ListenAndServe() error {
 }
 
 // The server constructor function
-func NewServer() (*Server, error) {
+func New() (*Server, error) {
 	// Create the new config
 	config := ParseConfig()
 
