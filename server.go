@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"path/filepath"
 )
 
 type Server struct {
@@ -33,7 +34,8 @@ func NewServer() (*Server, error) {
 	server := &Server{config: config}
 
 	// Since "tmpl" is lowercase it can only be accessed within the struct
-	tmpl, err := template.ParseFiles("./shittystartup/templates/landing.html")
+	templatePath := filepath.Join(config.TemplateDir, "landing.html")
+	tmpl, err := template.ParseFiles(templatePath)
 
 	// The standard error checking practice
 	if err != nil {
@@ -55,7 +57,7 @@ func NewServer() (*Server, error) {
 		config.StaticURL,
 		http.StripPrefix(
 			config.StaticURL,
-			http.FileServer(http.Dir("./shittystartup/static/")),
+			http.FileServer(http.Dir(config.StaticDir)),
 		),
 	)
 
