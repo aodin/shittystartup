@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="{{ .StaticURL }}bootstrap.min.css">
+    <link rel="stylesheet" href="{{ .StaticURL }}styles.css">
+    <style type="text/css">
+body { 
+  background: url(../static/rose.jpg) no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#main {
+  margin-top:400px;
+  color: white;
+  text-align: center;
+}
+#main h1 {
+  font-weight: bold;
+}
+#main p {
+  font-size: 18px;
+}
+    </style>
+  </head>
+  <body>
+    <div id="main" class="container">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2">
+          <h1>Shitty Startup</h1>
+          <p>Our product isn't ready, but we want to a web presence to show VCs during fundraising. Give us your email and we'll sell it for cash when we pivot.</p>
+          <!-- <h2>Hipster Ipsum</h2> -->
+          <!-- <p>Kale chips fingerstache occupy fixie, pork belly shabby chic hashtag squid kitsch lomo hoodie readymade. You probably haven't heard of them Godard flexitarian four loko tofu. Master cleanse put a bird on it +1 flannel Tonx skateboard. Asymmetrical biodiesel vegan, cred chia aesthetic cray authentic kitsch freegan mustache. Fixie Intelligentsia artisan vinyl paleo swag cred single-origin coffee narwhal, pop-up Marfa Echo Park. Cornhole Marfa salvia Carles farm-to-table VHS, meggings chia you probably haven't heard of them Pitchfork ugh Truffaut selvage wayfarers. Sustainable flexitarian squid, bicycle rights gastropub Bushwick polaroid keffiyeh forage scenester trust fund lo-fi mumblecore Truffaut.</p> -->
+          <div class="col-md-10 col-md-offset-1">
+            <form role="form">
+              <div class="input-group">
+                <input type="email" class="form-control input-lg" id="inputEmail" placeholder="Email">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary btn-lg" type="submit">Yeah That's Cool</button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
